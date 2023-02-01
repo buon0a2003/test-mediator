@@ -46,8 +46,7 @@ namespace nalys.Controllers
         [HttpPut("{id}")]
         public async Task<string> Update(UpdateStudentCommand command, string id)
         {
-            if (id != command.Id)
-                return new string("ko thanh cong");
+            command.Id = id;
             return await _mediator.Send(command);
         }
         
