@@ -7,7 +7,7 @@ using nalys.Commands;
 
 namespace nalys.Handlers
 {
-    public class UpdateStudentHandler : IRequestHandler<UpdateStudentCommand, string>
+    public class UpdateStudentHandler : IRequestHandler<UpdateStudentCommand, Unit>
     {
         private readonly svEntities _svEntities;
 
@@ -16,7 +16,7 @@ namespace nalys.Handlers
             _svEntities = svEntities;
         }
 
-        public async Task<string> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(UpdateStudentCommand request, CancellationToken cancellationToken)
         {
             var res = _svEntities.Students.Where(i => i.StudentID == request.Id).FirstOrDefault();
             if (res != null)
@@ -28,7 +28,7 @@ namespace nalys.Handlers
                 res.ClassName = request.ClassName;
                 await _svEntities.SaveChangesAsync();
 
-                return res.StudentID;
+                return Unit.Value;
             }
             else
                 return default;

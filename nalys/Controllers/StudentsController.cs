@@ -20,34 +20,44 @@ namespace nalys.Controllers
         }
 
         [HttpGet]
-        public async Task<List<Student>> Get()
+        public async Task<IActionResult> Get()
         {
-            return await _mediator.Send(new GetAllStudents());
+            var students =  await _mediator.Send(new GetAllStudents());
+
+            return Ok(students);
         }
 
         [HttpGet("{id}")]
-        public async Task<Student> Get(string id)
+        public async Task<IActionResult> Get(int id)
         {
-            return await _mediator.Send(new GetStudentById(id));
+            var stduent =  await _mediator.Send(new GetStudentById(id));
+
+            return Ok(stduent);
         }
 
         [HttpPost]
-        public async Task<Student> Post(Student student)
+        public async Task<IActionResult> Post(Student student)
         {
-            return await _mediator.Send(new AddStudentCommand(student));
+            await _mediator.Send(new AddStudentCommand(student));
+
+            return StatusCode(200);
         }
 
         [HttpDelete("{id}")]
-        public async Task<string> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            return await _mediator.Send(new RemoveStudentCommand(id));
+            var res = await _mediator.Send(new RemoveStudentCommand(id));
+
+            return Ok(res);
         }
 
         [HttpPut("{id}")]
-        public async Task<string> Update(UpdateStudentCommand command, string id)
+        public async Task<IActionResult> Update(UpdateStudentCommand command, int id)
         {
             command.Id = id;
-            return await _mediator.Send(command);
+            await _mediator.Send(command);
+
+            return StatusCode(200);
         }
         
     }

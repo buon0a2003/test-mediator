@@ -2,7 +2,7 @@
 {
     public class Student
     {
-        public string? StudentID { get; set; }
+        public int? StudentID { get; set; }
         public string? Name { get; set; }
         public string? Phone { get; set; }
         public string? Email { get; set; }

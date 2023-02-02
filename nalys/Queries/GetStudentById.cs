@@ -3,6 +3,6 @@ using nalys.Models;
 
 namespace nalys.Queries
 {
-    public record GetStudentById(string id) : IRequest<Student>;
+    public record GetStudentById(int id) : IRequest<Student>;
     
 }

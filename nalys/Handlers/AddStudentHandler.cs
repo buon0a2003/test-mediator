@@ -6,7 +6,7 @@ using nalys.Commands;
 
 namespace nalys.Handlers
 {
-    public class AddStudentHandler : IRequestHandler<AddStudentCommand, Student>
+    public class AddStudentHandler : IRequestHandler<AddStudentCommand, Unit>
     {
         private readonly svEntities _svEntities;
 
@@ -15,13 +15,12 @@ namespace nalys.Handlers
             _svEntities = svEntities;
         }
 
-        public async Task<Student> Handle(AddStudentCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(AddStudentCommand request, CancellationToken cancellationToken)
         {
             await _svEntities.Students.AddAsync(request.student);
             await _svEntities.SaveChangesAsync();
 
-            return request.student;
+            return Unit.Value;
         }
-
     }
 }

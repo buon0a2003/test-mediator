@@ -7,7 +7,7 @@ using nalys.Commands;
 
 namespace nalys.Handlers
 {
-    public class RemoveStudentHandler : IRequestHandler<RemoveStudentCommand, string>
+    public class RemoveStudentHandler : IRequestHandler<RemoveStudentCommand, int>
     {
         private readonly svEntities _svEntities;
 
@@ -16,17 +16,17 @@ namespace nalys.Handlers
             _svEntities = svEntities;
         }
         
-        public async Task<string> Handle(RemoveStudentCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(RemoveStudentCommand request, CancellationToken cancellationToken)
         {
             var entity = _svEntities.Students.Where(i => i.StudentID == request.id).FirstOrDefault();
             if (entity != null)
             {
                 _svEntities.RemoveRange(entity);
                 await _svEntities.SaveChangesAsync();
-                return new string("da xong");
+                return request.id;
             }
             else
-                return new string("ko thanh cong");
+                return default;
         }
     }
 }

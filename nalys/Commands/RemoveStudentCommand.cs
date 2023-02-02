@@ -7,7 +7,7 @@ using nalys.Commands;
 
 namespace nalys.Commands
 {
-    public record RemoveStudentCommand(string id) : IRequest<string>;
+    public record RemoveStudentCommand(int id) : IRequest<int>;
     
     
 }

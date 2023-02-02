@@ -5,6 +5,6 @@ using nalys.Queries;
 
 namespace nalys.Commands
 {
-    public record AddStudentCommand(Student student) : IRequest<Student>;
+    public record AddStudentCommand(Student student) : IRequest;
     
 }

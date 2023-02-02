@@ -7,9 +7,9 @@ using nalys.Commands;
 
 namespace nalys.Commands
 {
-    public class UpdateStudentCommand : IRequest<string>
+    public class UpdateStudentCommand : IRequest
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Phone { get; set; }
         public string Email { get; set; }
