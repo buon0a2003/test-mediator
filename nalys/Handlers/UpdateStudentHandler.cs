@@ -25,7 +25,7 @@ namespace nalys.Handlers
                 res.Phone = request.Phone;
                 res.Email = request.Email;
                 res.Address = request.Address;
-                res.ClassName = request.ClassName;
+                res.ClassID = request.ClassID;
                 await _svEntities.SaveChangesAsync();
 
                 return Unit.Value;

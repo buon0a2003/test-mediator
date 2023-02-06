@@ -13,5 +13,6 @@ namespace nalys.Models
         }
 
         public virtual DbSet<Student> Students { get; set; }
+        public virtual DbSet<Class> Class { get; set; }
     }
 }
